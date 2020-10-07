@@ -15,7 +15,7 @@ namespace ProjetCSharp.GestionCampagne
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         // proprietés campagne
         [Column("Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("NomCampagne")]
         public string NomCampagne { get; set; }

@@ -37,7 +37,7 @@ namespace ProjetCSharp.Service
         
         public async Task<List<Campagne>> ListeCampagne()
         {
-            var campagnes = await context.Campagne.AsQueryable().ToListAsync();
+            var campagnes = await context.Campagne.ToListAsync();
             return campagnes;
         }
     }
