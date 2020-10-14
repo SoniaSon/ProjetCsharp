@@ -23,7 +23,7 @@ namespace ProjetCSharp.IHM
             this.context = new Context();
             this.campagneService = new CampagneService(this.context);
             InitializeComponent();
-            this.ChargeCampagne();
+            this.Campagne_Load();
         }
 
         //Ajouter une campagne ( boutton ajouter campagne)
@@ -33,7 +33,16 @@ namespace ProjetCSharp.IHM
             newCampagne.NomCampagne = this.textBox1.Text;
             await this.campagneService.AddCampagne(newCampagne);
             this.textBox1.Text = null;
-            this.ChargeCampagne();
+            this.Campagne_Load();
+        }
+        public void OpenIHMCampagne_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var index = this.listBox1.SelectedIndex;
+            var campagneSelected = this.listeCampagne[index];
+            //On ouvre une nouvelle fenêtre avec en paramètre la campagne récupérée
+            var nextForm = new DetailsCampagne(campagneSelected);
+            nextForm.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -46,18 +55,8 @@ namespace ProjetCSharp.IHM
 
         }
 
-        private void Campagne_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //Charger toutes les campagnes ajoutées 
-        public async void ChargeCampagne()
+        private async void Campagne_Load()
         {
             this.listBox1.Items.Clear();
             this.listeCampagne = await this.campagneService.ListeCampagne();
@@ -67,9 +66,17 @@ namespace ProjetCSharp.IHM
             });
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        
+        
     }
 }

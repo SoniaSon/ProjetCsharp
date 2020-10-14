@@ -96,7 +96,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Campagne";
             this.Text = "Campagne";
-            this.Load += new System.EventHandler(this.Campagne_Load);
+            //this.Load += new System.EventHandler(this.Campagne_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
