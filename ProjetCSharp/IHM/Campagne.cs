@@ -40,7 +40,6 @@ namespace ProjetCSharp.IHM
             this.Hide();
             var index = this.listBox1.SelectedIndex;
             var campagneSelected = this.listeCampagne[index];
-            //On ouvre une nouvelle fenêtre avec en paramètre la campagne récupérée
             var nextForm = new DetailsCampagne(campagneSelected);
             nextForm.Show();
         }

@@ -20,9 +20,7 @@ namespace ProjetCSharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //On ferme la fenêtre courrante
             this.Hide();
-            //On ouvre la prochaine fenêtre
             var button1 = new Campagne();
             button1.Show();
         }

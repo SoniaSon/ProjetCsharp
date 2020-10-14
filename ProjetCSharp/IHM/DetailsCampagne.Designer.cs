@@ -1,4 +1,6 @@
-﻿namespace ProjetCSharp.IHM
+﻿using System;
+
+namespace ProjetCSharp.IHM
 {
     partial class DetailsCampagne
     {
@@ -117,6 +119,7 @@
             this.label2.Size = new System.Drawing.Size(84, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "Campagne :";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // infoContact
             // 
@@ -166,6 +169,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -27,7 +27,7 @@ namespace ProjetCSharp.IHM
             this.contactService = new ContactService(this.context);
             InitializeComponent();
             this.currentCampagne = campagneSelected;
-            this.NomCampagneNom.Text = this.currentCampagne.NomCampagne;
+            this.label2.Text = this.currentCampagne.NomCampagne;
             this.LoadEmails();
         }
 
@@ -47,23 +47,16 @@ namespace ProjetCSharp.IHM
             var newContact = new GestionCampagne.Contact();
             newContact.Mail = this.inputMail.Text;
             newContact.CampagneId = this.currentCampagne.Id;
-            //Appel au service permettant de créer un contact
             await this.contactService.AddEmail(newContact);
-            //Le champs de saisie est remit à null
             this.inputMail.Text = null;
-            //On charge de nouveau les emails
             this.LoadEmails();
         }
         public async void LoadEmails()
         {
-            //On vide la liste des emails de la listBox "listEmailBox"
             this.listBox1.Items.Clear();
-            //On réupère les contacts de la campagne en passant l'id de la campagne en paramètre
             this.contacts = await this.contactService.ContactListByCampagne(this.currentCampagne.Id);
-            //On boucle sur la liste des contacts précédemment récupéré
             contacts.ForEach(c =>
             {
-                //On ajoute l'adresse mail du contact à la liste
                 this.listBox1.Items.Add(c.Mail);
             });
         }
@@ -77,7 +70,7 @@ namespace ProjetCSharp.IHM
         }
 
         //Importer la liste des emails
-        public void button3_Click(object sender, EventArgs e)
+        /*public void button3_Click(object sender, EventArgs e)
         {
             var fileDialog = new OpenFileDialog();
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -101,7 +94,7 @@ namespace ProjetCSharp.IHM
             var emailList = data.Split("\r\n");
             await this.contactService.AddEmails(this.currentCampagne, emailList.ToList());
             this.LoadEmails();
-        }
+        }*/
 
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,9 +111,9 @@ namespace ProjetCSharp.IHM
         public void button4_Click_1(object sender, EventArgs e)
         {
             var index = this.listBox1.SelectedIndex;
-            var nextForm = new SendMail(this.currentCampagne);
+            var nextForm = new expInput(this.currentCampagne);
             if (index != -1)
-                nextForm = new SendMail(this.currentCampagne, this.contacts[index].Mail);
+                nextForm = new expInput(this.currentCampagne, this.contacts[index].Mail);
             nextForm.Show();
             this.Hide();
         }
@@ -129,9 +122,7 @@ namespace ProjetCSharp.IHM
         public async void button5_Click(object sender, EventArgs e)
         {
             await this.contactService.UpdateContact(this.infoContact.Text, this.listBox1.SelectedItem.ToString());
-            //On rafraichit la liste des emails
             this.LoadEmails();
-            //On met la textBox à null
             this.infoContact.Text = null;
 
 
@@ -143,6 +134,11 @@ namespace ProjetCSharp.IHM
             await this.contactService.DeleteContactByEmail(this.listBox1.SelectedItem.ToString());
             this.infoContact.Text = null;
             this.LoadEmails();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

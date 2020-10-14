@@ -17,7 +17,6 @@ namespace ProjetCSharp.Service
             this.context = context;
         }
         /// Envoyer un email
-        /// </summary>
         public void SendMail(string smtp, string from, string to, string obj, string msg, string username, string password, string msg1, string text, string text1)
         {
             try
